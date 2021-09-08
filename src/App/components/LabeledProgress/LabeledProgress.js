@@ -1,7 +1,8 @@
 import React from 'react'
-import { Box, Grid, LinearProgress } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
+import { CustomProgressBar } from '../CustomProgressBar/CustomProgressBar'
 
-function LabeledProgress ({ score, maxScore, ...rest }) {
+function LabeledProgress ({ score, maxScore, minScore, ...rest }) {
   return (
     <Box>
       <Grid container justifyContent='space-between'>
@@ -12,7 +13,7 @@ function LabeledProgress ({ score, maxScore, ...rest }) {
           Max Score {maxScore}%
         </Grid>
       </Grid>
-      <LinearProgress variant='determinate' value={score} {...rest} />
+      <CustomProgressBar actual={score} max={maxScore} min={minScore} />
     </Box>
   )
 }

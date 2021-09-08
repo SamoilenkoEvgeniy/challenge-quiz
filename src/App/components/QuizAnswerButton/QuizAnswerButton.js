@@ -1,17 +1,23 @@
 import React from 'react'
 import { Button, makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   isSelected: {
-    backgroundColor: 'black',
-    color: 'white !important'
+    backgroundColor: theme.palette.primary.dark,
+    color: `${theme.palette.common.white} !important`
   },
   isCorrectNotSelected: {
-    color: 'black !important'
+    backgroundColor: theme.palette.warning.dark,
+    color: `${theme.palette.common.white} !important`
+  },
+  isInCorrectSelected: {
+    backgroundColor: theme.palette.error.dark,
+    color: `${theme.palette.common.white} !important`
   }
-})
+}))
 
 export function getClass (classes, disabled, isSelected, answer) {
+  if (disabled && isSelected && !answer.isCorrect) return classes.isInCorrectSelected
   if (disabled && isSelected) return classes.isSelected
   if (disabled && !isSelected && answer.isCorrect) return classes.isCorrectNotSelected
 }
